@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" style="height: 100%;justify-content: flex-start;">
+
+<head>
+    <!-- 自动插入标准的waiting模块 -->
+    <script
+        src="https://default5b268d572a6f4e04b0de6938583d5e.bc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/558ff5962c5a4cb295e573c8c86f7a0a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GdT-MPNoX0S8OFbGA44Tc7WKaDpORtW_jxHuiBc9yVE&Function=insert_waiting_mask"></script>
+    <!-- 本地JQuery -->
+    <script
+        src="https://default5b268d572a6f4e04b0de6938583d5e.bc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/558ff5962c5a4cb295e573c8c86f7a0a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GdT-MPNoX0S8OFbGA44Tc7WKaDpORtW_jxHuiBc9yVE&Function=min"></script>
+    <!-- 通用居中模式 -->
+    <link rel="stylesheet" type="text/css"
+        href="https://default5b268d572a6f4e04b0de6938583d5e.bc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/558ff5962c5a4cb295e573c8c86f7a0a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GdT-MPNoX0S8OFbGA44Tc7WKaDpORtW_jxHuiBc9yVE&Function=Center_CSS">
+    <!-- 设置浏览器标识 -->
+    <link rel="icon" type="image/png" href="https://linfengwang1988-blip.github.io/IdeaSystem/Repair.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />  锁定手指缩放-->
+    <meta http-equiv="nocache" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>RMDx Hangzhou 设备报修系统</title>
+
+    <style>
+        /* 设置背景图片 */
+        body {
+            background-image: url('https://0b2c7173d842e6e8a86066bea620d5.13.environment.api.powerplatform.com/powerautomate/automations/direct/workflows/bf91d62f2ed14025a8bb9bf34dfccc7a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5qUN9K8g0-9_VoPh-X7JP8-iAc2PPtDyucJAEEB0_No&fileid=39B1537F-D142-4A7F-9710-42A182E79614');
+        }
+
+        .function_box_row {
+            background-color: rgba(240, 248, 255, 0.911);
+        }
+
+        .Detail_info {
+
+            background-color: rgba(240, 248, 255, 0);
+
+
+        }
+
+        .station {
+            color: blue;
+            margin-bottom: 10px;
+            font-size: large;
+            font-weight: bolder;
+            background-color: rgba(240, 248, 255, 0);
+        }
+
+        .subpart {
+            color: #000075;
+            font-size: 18px;
+            background-color: rgba(240, 248, 255, 0);
+        }
+
+        .unit {
+            color: black;
+            font-weight: normal;
+            row-gap: 10px;
+            background-color: rgba(240, 248, 255, 0);
+            width: 90%;
+            border: 1px solid rgb(192, 191, 191);
+            margin-top: 5px;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #d8d8d8;
+            position: relative;
+            margin: 50px auto;
+        }
+
+        .circle::before {
+            content: attr(data-percent);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #333;
+        }
+
+        .History {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #F1F4F9;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .History td,
+        .History th {
+            border: 1px solid #ddd;
+            padding: 3px 3px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .History th {
+
+            font-weight: bold;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            background-color: #001148;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        #Crt_baoxiuren :read-only,
+        #Crt_baoxiuren_No :read-only,
+        #eng_4_selected :disabled {
+            background-color: #00106000;
+            border: 0px;
+            padding-left: 0px;
+            border: none;
+            outline: none;
+        }
+
+        ;
+    </style>
+
+    </style>
+
+
+
+<body style="min-height: 760px;height: 100%;display: flex;justify-content: center;align-items: center;">
+    <!-- 主题页眉 -->
+    <table style='width:100%;margin:0;padding:0;position:fixed;left:0;top:0;z-index:888;border:0' cellpadding="0"
+        cellspacing="0">
+        <tr>
+            <td style='background:#000075;height:48px;color:white;vertical-align:middle;width:100px' cellspacing="0"
+                cellpadding="0">
+                <!--   雅培Logo -->
+                <img style='margin-left:10px;vertical-align:middle;width: 120px;border-radius: 0px; ' alt="组织徽标"
+                    src="https://0b2c7173d842e6e8a86066bea620d5.13.environment.api.powerplatform.com/powerautomate/automations/direct/workflows/bf91d62f2ed14025a8bb9bf34dfccc7a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5qUN9K8g0-9_VoPh-X7JP8-iAc2PPtDyucJAEEB0_No&fileid=7ca691d1-b6d6-4acb-b2f6-657c5c78ecc1" />
+            </td>
+            <td
+                style='background:#000075;height:48px;color:white;vertical-align:middle;font-size:15px;;padding-left:0px;font-weight:bold'>
+                <Span style="font-size: 16px;">RMDx Hangzhou 设备报修系统</Span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- 到场确认 -->
+    <div class="notify_bg" id="到场确认窗" name="到场确认窗"><!-- 弹窗蒙版 -->
+        <!-- 主体 ↓-->
+        <div class="notify_content" id="" name="" style="width: 50%;min-width: 350px;">
+            <!-- 标题 -->
+            <span class="notify_title" id="notify_title" name="notify_title"
+                style="text-align: center;padding-top: 10px;background-color: #001148;">工程师到场确认</span>
+            <div style="display: flex;justify-content: center;height: 60%;row-gap: 20px;">
+                <div style="flex-direction: row;justify-content: space-evenly;height: 40px;align-content: flex-start">
+                    请工程师选择本次的报修类型：
+
+                </div>
+                <div style="flex-direction: row;justify-content: space-evenly" id="维修类型容器">
+                    <span style="color: #000075;font-weight: bold;"><input checked style="width: 15px;height: 15px"
+                            type="radio" name="设备报修类型" id="设备维修" value="设备维修">设备维修</span>
+                    <span style="color: #0a4d38;font-weight: bold;"><input style="width: 15px;height: 15px;;"
+                            type="radio" name="设备报修类型" id="设备调整" value="设备调整">设备调整</span>
+
+                </div>
+            </div>
+            <div style="flex-direction: row;column-gap: 30px;justify-content: space-evenly">
+                <button class="cancel" name="取消" onclick="$('#到场确认窗').hide();维修类型重置()"
+                    style="width: 100px;height: 35.3333px; font-size:13.3333px ;;font-weight: normal; padding:  8px 10px 8px 10px; background-color: dimgray; color:white ;">取消</button>
+                <button class="button" name="确认" onclick="报修进度推进('否',$('#工程师已到场'));$('#到场确认窗').hide();维修类型重置()"
+                    style="width: 100px;height: 35.3333px; font-size:13.3333px ;font-weight: normal; padding:  8px 10px 8px 10px;background-color:rgb(4, 122, 67); ;color: white;">确认</button>
+            </div>
+        </div>
+    </div>
+    <!-- 完成维修确认 -->
+    <div class="notify_bg" id="完成确认" name="完成确认"><!-- 弹窗蒙版 -->
+        <!-- 主体 ↓-->
+        <div class="notify_content" id="" name="" style="width: 50%;min-width: 350px;">
+            <!-- 标题 -->
+            <span class="notify_title" id="notify_title" name="notify_title"
+                style="text-align: center;padding-top: 10px;background-color: #001148;">维修完成确认</span>
+            <div style="display: flex;justify-content: center;height: 60%;row-gap: 20px;">
+
+                <!-- Maximo触发暂时关闭 -->
+                <!-- <div style="display: flex;justify-content: center;height: 60%;row-gap: 20px;">
+                    <div
+                        style="flex-direction: row;justify-content: space-evenly;height: 40px;align-content: flex-start">
+                        请选择是否需要触发Maximo工单(开发中)：
+
+                    </div>
+                    <div style="flex-direction: row;justify-content: space-evenly" id="触发maximo选择容器">
+                        <span style="color: #3e3e3e;font-weight: bold;"><input checked style="width: 15px;height: 15px"
+                                type="radio" name="触发maximo选择" id="不触发maximo" value="不触发maximo" disabled>否</span>
+                        <span style="color: #0a4d38;font-weight: bold;"><input style="width: 15px;height: 15px;;"
+                                type="radio" name="触发maximo选择" id="触发maximo" value="触发maximo" disabled>是</span>
+
+                    </div>
+                </div> -->
+
+                <div style="display: flex;justify-content: center;height: 60%;row-gap: 20px;">
+                    <div
+                        style="flex-direction: row;justify-content: space-evenly;height: 40px;align-content: flex-start">
+                        请确认是否已完成维修
+
+                    </div>
+                </div>
+
+            </div>
+            <div style="flex-direction: row;column-gap: 30px;justify-content: space-evenly">
+                <button class="cancel" name="取消" onclick="$('#完成确认').hide()"
+                    style="width: 100px;height: 35.3333px; font-size:13.3333px ;;font-weight: normal; padding:  8px 10px 8px 10px; background-color: dimgray; color:white ;">取消</button>
+                <button class="button" name="确认" onclick="报修进度推进('否',$('#完成维修按钮'));$('#完成确认').hide()"
+                    style="width: 100px;height: 35.3333px; font-size:13.3333px ;font-weight: normal; padding:  8px 10px 8px 10px;background-color:rgb(4, 122, 67); ;color: white;">确认</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- 取消报修确认 -->
+    <div class="notify_bg" id="取消确认" name="取消确认"><!-- 弹窗蒙版 -->
+        <!-- 主体 ↓-->
+        <div class="notify_content" id="" name="" style="width: 50%;min-width: 350px;">
+            <!-- 标题 -->
+            <span class="notify_title" id="notify_title" name="notify_title"
+                style="text-align: center;padding-top: 10px;background-color: #001148;">取消维修确认</span>
+            <div style="display: flex;justify-content: space-around;height: 60%;">
+                <div style="flex-direction: row;justify-content: space-evenly;height: 40px;align-content: end">
+                    请填写取消本次报修的原因：
+
+                </div>
+                <div style="flex-direction: row;justify-content: space-evenly;height: auto;align-content: flex-start;"
+                    id="取消原因容器">
+                    <textarea
+                        Style="margin-bottom: 20px;border:solid  1px rgb(121, 118, 118);width: 80%;height:80px;padding: 10px;box-sizing: border-box; border-color: red;"
+                        name="取消原因" id="取消原因" placeholder="请简要描述本次报修取消的原因。" required onchange="new function(){
+                               
+                            if ($('#取消原因').val() === '') {
+                            $('#取消报修确认按钮').attr('disabled',true);
+                            $('#取消报修确认按钮').css('background-color','rgb(165, 165, 165)');
+                            } else 
+                            { 
+                            $('#取消报修确认按钮').attr('disabled',false);
+                            $('#取消报修确认按钮').css('background-color','rgb(4, 122, 67)');
+
+                            }
+ 
+                            }"></textarea>
+                </div>
+            </div>
+            <div style="flex-direction: row;column-gap: 30px;justify-content: space-evenly">
+                <button class="cancel" name="取消" id="取消报修取消按钮" onclick="$('#取消确认').hide();取消原因重置();必填项空值时边框变红()"
+                    style="width: 100px;height: 35.3333px; font-size:13.3333px ;;font-weight: normal; padding:  8px 10px 8px 10px; background-color: dimgray; color:white ;">取消</button>
+                <button class="button" name="确认" id="取消报修确认按钮"
+                    onclick="报修进度推进('是',$('#取消维修按钮'));$('#取消报修取消按钮').click();"
+                    style="width: 100px;height: 35.3333px; font-size:13.3333px ;font-weight: normal; padding:  8px 10px 8px 10px;background-color:rgb(165, 165, 165);  ;color: white;"
+                    disabled>确认</button>
+            </div>
+        </div>
+    </div>
+    <!-- 个人信息更新 -->
+    <div class="notify_bg" id="个人信息更新" name="个人信息更新"><!-- 弹窗蒙版 -->
+        <!-- 主体 ↓-->
+        <div class="notify_content" id="" name="" style="width: 50%;min-width: 350px;">
+            <!-- 标题 -->
+            <span class="notify_title" id="notify_title" name="notify_title"
+                style="text-align: center;padding-top: 10px;background-color: #001148;">当前个人信息填写</span>
+            <div style="flex-direction: row;justify-content: space-evenly;height: auto;align-content: flex-start;height: 60%;"
+                id="个人信息更新">
+                <div
+                    style="margin-top: 15px; display: flex;justify-content: center;height: 80%;row-gap: 35px;flex-direction: row">
+                    <div style="flex-direction: row;"><label style="align-content: center;">请填写姓名：</label><input type=""
+                            ID="User_Name" style="width:50%" value=""></div>
+                    <div style="flex-direction: row;align-content: center;"><label
+                            style="align-content: center;">请填写工号：</label><input type="" ID="User_No" style="width:50%"
+                            value="">
+                    </div>
+                </div>
+            </div>
+            <div style="flex-direction: row;column-gap: 30px;justify-content: space-evenly">
+                <button class="cancel" name="取消"
+                    onclick="$('#个人信息更新').hide();$('#User_Name').val(Crt_Employee);$('#User_No').val(Crt_Employee_No)"
+                    style="width: 100px;height: 35.3333px; font-size:13.3333px ;;font-weight: normal; padding:  8px 10px 8px 10px; background-color: dimgray; color:white ;">取消</button>
+                <button class="button" name="确认" onclick="更新与查询个人信息();$('#个人信息更新').hide();$('.waiting').show();"
+                    style="width: 100px;height: 35.3333px; font-size:13.3333px ;font-weight: normal; padding:  8px 10px 8px 10px;background-color:rgb(4, 122, 67); ;color: white;">确认</button>
+            </div>
+        </div>
+    </div>
+    <!-- 主体用"function_box_row或者function_box_col或者center_box" 、弹窗用："notify_box" -->
+    <!-- Demo1横向容器 -->
+    <div class="function_box_row"
+        style="margin-top: 60px;margin-bottom: 10px;min-height: 670px;align-content: flex-start">
+        <div style="display: flex;flex-wrap: wrap;flex-direction: row;margin-top: 5px">
+            <div style="flex-direction: row;justify-content:space-between"> <span style="width: 20px;"></span>
+                <h3 ID="Title"></h3>
+                <img id="peopleimg" onclick="$('#个人信息更新').show();" src="" alt="" style="width: 27px;height: 27px;"
+                    onerror="this.src='https://default5b268d572a6f4e04b0de6938583d5e.bc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/30e78b7adb8941ea8a9ae2a1f94c0be7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=f4j02QscTpJjo8Ni2rgpHstIZp-cscj_hyZGmS7xZEI&C_Q=&URL=/Ones%20GalleryCase3/%E6%96%87%E4%BB%B6%E8%BD%AC%E5%85%AC%E7%BD%91%E5%AD%98%E6%94%BE%E7%A9%BA%E9%97%B4/%E5%A4%B4%E5%83%8F.png'">
+            </div>
+
+            <!-- <button style="border: 1px solid black ;width:50px;border-radius:5px;margin-left: 20px;" ID=""
+                onclick="$('.waiting').css('display','block');get_usageinfo(equipmentNo)">刷新</button> -->
+
+
+            <table style="width: 100%; padding-left: 0%;padding-right: 0%;padding-top: 5px;">
+                <tbody>
+                    <tr style="padding-bottom: 20px; height: 40px;">
+                        <td style="font-weight: bolder;width: 110px">设备名称：</td>
+                        <td id="EquipmentName" style=""></td>
+                    </tr>
+                    <tr style="padding-bottom: 20px;height: 40px;">
+                        <td style="font-weight: bolder;width: 110px;">维修负责人：</td>
+                        <td id="Crt_Engineer1" style="">
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom: 20px;height: 40px;">
+                        <td style="font-weight: bolder;width: 110px">设备操作人：</td>
+                        <td id="Crt_Operator" class="Crt_Operator" style="padding-left: 0px;"></td>
+                    </tr>
+                    <tr style="padding-bottom: 20px;height: 40px;">
+                        <td style="font-weight: bolder;width: 110px">操作人工号：</td>
+                        <td id="Crt_Operator_No" class="Crt_Operator" style=""></td>
+                    </tr>
+                    <!-- <tr style="padding-bottom: 20px;height: 40px;">
+                        <td style="font-weight: bolder;width: 110px;">负责人1电话：</td>
+                        <td id="Crt_Engineer1Phone" style=""><a href="tel:13185731192" class="phone-link">13185731192</a>
+                        </td>
+                    </tr> -->
+                    <tr style="padding-bottom: 20px; height: 40px;">
+                        <td style="font-weight: bolder;width: 110px;">维修值班人1：</td>
+                        <td id="Crt_Engineer2" style=""></td>
+                    </tr>
+                    <tr style="padding-bottom: 20px; height: 40px;">
+                        <td style="font-weight: bolder;width: 110px;">维修值班人2：</td>
+                        <td id="Crt_Engineer3" style=""></td>
+                    </tr>
+                    <!-- <tr style="padding-bottom: 20px; height: 40px;">
+                        <td style="font-weight: bolder;width: 110px;">负责人2电话：</td>
+                        <td id="Crt_Engineer2Phone" style=""><a ID="Crt_Engineer2_Phone" href="tel:13185731192"
+                                class="phone-link">13185731192</a></td>
+                    </tr> -->
+                    <tr style="padding-bottom: 20px; height: 40px;">
+                        <td style="font-weight: bolder;width: 110px;">报修状态：</td>
+                        <td style="color: Green;font-weight: bolder;">
+                            <div
+                                style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+                                <label for="" id="status"></label> <span style="margin-left: 30px;"><label
+                                        style="color: red;display: none;" class="timer"
+                                        id="timer">00:00:00</label><button ID="baoxiu"
+                                        style="padding:  8px 10px 8px 10px; background-color: rgb(45, 117, 250); color:white ;display: none;"
+                                        onclick="开始报修();">点击进行报修</button><span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom: 20px;height: 40px;display: none;" class="Crt_baoxiuren">
+                        <td style="font-weight: bolder;width: 110px">报修人姓名：</td>
+                        <td class="Crt_baoxiuren" style="padding-left: 0px;"><input class="Crt_baoxiuren"
+                                id="Crt_baoxiuren" style="width: 100%;box-sizing: border-box;border-color: red;"
+                                type="text" value="">
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom: 20px;height: 40px;display: none;" class="Crt_baoxiuren">
+                        <td style="font-weight: bolder;width: 110px">报修人工号：</td>
+                        <td class="Crt_baoxiuren" style=""><input class="Crt_baoxiuren"
+                                style="width: 100%;box-sizing: border-box;border-color: red;" type="text"
+                                id="Crt_baoxiuren_No" value="11604715"></td>
+                    </tr>
+                    <tr style="padding-bottom: 20px;height: 40px;display: none;" class="baoxiuFunction">
+                        <td style="font-weight: bolder;width: 110px">指派工程师:</td>
+                        <td class="selected_Eng" style="">
+                            <select disabled ID="eng_4_selected"
+                                style="width: 100%; box-sizing: border-box;border-color: red; background-color: #ffffff;border: solid 1px black;color: black;">
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom: 20px; height: 40px;display: none;" class="baoxiuFunction">
+                        <td style="font-weight: bolder;width: 110px;padding-top: 5px;align-content: start;">报修原因：
+                        </td>
+                        <td id="trigger_reason" style="color: Green;font-weight: bolder;">
+                            <textarea
+                                Style="margin-top: 5px;border:solid  1px rgb(121, 118, 118);width: 100%;height:120px;padding: 2px 10px 2px 10px;box-sizing: border-box; border-color: red;font-size: 16px;font-family: Arial"
+                                name="报修原因" id="Reason" required></textarea>
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom: 20px;height: 40px;display: none;" class="Step3" id="报修类型">
+                        <td style="font-weight: bolder;width: 110px">报修类型:</td>
+                        <td class="crbd5_type" style="">
+                            <input class="crbd5_type" id="crbd5_type"
+                                style="width: 100%; box-sizing: border-box; border-color: black;" type="text" value=""
+                                disabled>
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom: 20px;height: 40px;display: none;" class="Step3" id="到场工程师">
+                        <td style="font-weight: bolder;width: 110px">到场工程师:</td>
+                        <td class="crbd5_arrival_eng" style="">
+                            <input class="crbd5_arrival_eng" id="crbd5_arrival_eng"
+                                style="width: 100%; box-sizing: border-box; border-color: black;" type="text" value=""
+                                disabled>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="baoxiuFunction1"
+                style="display: flex;flex-direction: row;width: 100%;padding-left: 0%;padding-right: 0%;margin-top: 20px;justify-content: space-around;display: none;">
+                <button style="width: 100px; padding:  8px 10px 8px 10px; background-color: dimgray; color:white ;"
+                    class="Step1" onclick="开始报修();">点击取消</button>
+                <button
+                    style="width: 100px; padding:  8px 10px 8px 10px;background-color:rgb(165, 165, 165); ;color: white;"
+                    disabled id="submitbtn" class="Step1" value="点击提交"
+                    onclick="报修进度推进('否',this);localStorage.setItem('submitby',$('#Crt_baoxiuren').val());localStorage.setItem('submitby_UPI',$('#Crt_baoxiuren_No').val())">点击提交</button>
+                <button
+                    style="width: 100px; padding:  8px 10px 8px 10px; background-color: rgb(53, 2, 2); color:rgb(255, 255, 255) ;display: none;"
+                    id="取消维修按钮" class="Step23" onclick="$('#取消确认').show()">取消本次报修</button>
+                <button ID="工程师已到场"
+                    style="width: 100px; padding:  8px 10px 8px 10px; background-color: rgb(4, 65, 122); color:rgb(255, 255, 255) ;display: none;"
+                    class="Step2" onclick="$('#到场确认窗').show()">工程师已到场</button>
+
+                <button
+                    style="width: 100px; padding:  8px 10px 8px 10px; background-color: rgb(4, 122, 67); color:rgb(255, 255, 255) ;display: none;"
+                    id="完成维修按钮" class="Step3" onclick="$('#完成确认').show();触发maximo重置()">已完成维修</button>
+            </div>
+
+            <!-- 报修记录 -->
+            <!-- <table style="width: 100%; padding-left: 0%;padding-right: 0%;padding-top: 0px;" class="baoxiuFunction2">
+                <tr style="padding-bottom: 20px;height: 40px;">
+                    <td style="font-weight: bolder;width: 110px">已报修记录：</td>
+                    <td id="Crt_Operator" style=""></td>
+                </tr>
+            </table>
+
+
+            <div style="padding-left: 0%;padding-right:0%; max-height: 290px;height: auto; overflow: auto;justify-content:start"
+                class="baoxiuFunction2">
+                <table class="History" style="width: 100%; padding-left: 5%;padding-right: 5%; border-radius: 0px;">
+                    <thead style="">
+                        <tr style="height: 40px;">
+                            <th style="border-radius: 0px;width: 30px;">序号</th>
+                            <th style="border-radius: 0px;width: 70px;">报修时间</th>
+                            <th style="border-radius: 0px">报修原因</th>
+                            <th style="border-radius: 0px;width: 55px;;">当前状态</th>
+                            <th style="border-radius: 0px;width: 40px;">处理时长(M)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="HistoryDetail">
+
+                    </tbody>
+                </table>
+            </div> -->
+
+        </div>
+        <!-- <div Class="Detail_info" ID="Detail_info"
+            style="align-content: flex-start;margin-top: 10px;margin-bottom: 20px;">
+
+        </div> -->
+    </div>
+    <!-- Demo2横向容器 -->
+    <!-- <div class="center_box">
+        <div style="align-content: start;">
+            <span style="width: 20%;">问题1</span>
+            <span style="width: 40%;">问题1</span>
+            <span>问题1</span>
+            <span>问题1</span>
+            <span>问题1</span>
+            <button class="button" name="提交">提交</button>
+        </div>
+    </div> -->
+
+    <!-- Demo3弹窗 -->
+
+
+
+    <!-- JS部分 -->
+    <script>
+        var kaishibaoxiu = false
+        var equipmentNo = decodeURIComponent(new URLSearchParams(window.location.search).get('EquipmentNo'))
+        var equipmentName = decodeURIComponent(new URLSearchParams(window.location.search).get('EquipmentName'))
+        var baoxiulist
+        var templist
+        var Advance_Operators
+        var trigger_reason
+        var submitby
+        var submitby_UPI
+        var Crt_Employee_No
+        var Crt_Employee
+        var Crt_Employee_Email
+        var Crt_Employee_Phone
+        var status_val
+        var submitby_time
+        var rec_ID = ""
+        var MappingList
+        var crbd5_owner1
+        var crbd5_owner1_Phone
+        var Crt_Operator
+        var Crt_Operator_No
+        var Crt_Working_Engs
+        var Crt_owner_Engs
+        var Crt_owner_Engs_Arr
+        var SelectedEngVal
+        var Bussing_Engs
+        var arr_index_start
+        var EngList_Arr = []
+        var my_Role
+        var crbd5_arrival_eng
+        var crbd5_arrival_eng_upi
+        var crbd5_completion_confirm_by
+        var crbd5_completion_confirm_by_upi
+        var crbd5_type
+        var Send_to_maximo
+        var web_open_time_stamp = getLocalISOString()
+        var Maintenance_Get_TimeStamp
+        // 需全部载入后运行的JS写在这里面 
+        $(document).ready(
+
+            function () {
+                //装载本地参数
+                Crt_Employee = localStorage.getItem("Crt_Employee");
+                $('#User_Name').val(Crt_Employee);
+                Crt_Employee_No = localStorage.getItem("Crt_Employee_No");
+                $('#User_No').val(Crt_Employee_No);
+                Crt_Employee_Email = localStorage.getItem("Crt_Employee_Email");
+                Crt_Employee_Phone = localStorage.getItem("Crt_Employee_Phone");
+                //设置头像照片
+                $('#peopleimg').attr('src', `https://default5b268d572a6f4e04b0de6938583d5e.bc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/72bb177f2ea6470ca65a84f89f832cca/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=X3MB_ykuxwkGi472oYk97EcMVlOJdYg7aJsjNdTdA-o&C_Q=&Function=邮箱查询&Email=${Crt_Employee_Email}`);
+
+                扫描报修清单()
+                //设置设备信息
+                $('#Title').append(`设备报修信息（${equipmentNo}）`);
+                $('#EquipmentName').append(`${equipmentName}`);
+            });
+
+
+        function 扫描报修清单() {
+            $.ajax({
+                url: 'https://prod-185.westus.logic.azure.com:443/workflows/fd7fa8c5f8cb462eb14d062bb32e7a5e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2TUX-bxhnWEqpnc3RE4cEFodt-jh74B6llAZwS-pM-E&Function=获取报修信息&EquipmentNo=' + equipmentNo,
+                method: 'GET',
+                success(response) {
+                    //设置当前报修清单时间戳
+                    Maintenance_Get_TimeStamp = getLocalISOString();
+                    Crt_owner_Engs_Arr = [];
+                    Advance_Operators = response.Advance_Operators;
+                    //baoxiulist以crbd5_extra_sort_no 主要排序并倒序排序，同时以crbd5_submit_time次要倒序排序
+                    baoxiulist = response.HistoryList.sort((a, b) =>
+                            // 1) 主要排序：extra_sort_no 降序（大的在前）
+                            (b.crbd5_extra_sort_no ?? -Infinity) - (a.crbd5_extra_sort_no ?? -Infinity)
+                            // 2) 次要排序：submit_time 降序（新的在前）
+                            || (new Date(b.crbd5_submit_time) - new Date(a.crbd5_submit_time))
+                        );
+                    ;//历史报修清单
+                    MappingList = response.equipment_owner_mapping_list;//第一第二责任人表
+                    OperatorInfo = response.OperatorInfo;//设备上传的当前操作人信息
+
+                    //设备对应的6个SME清单
+                    EngList = response.EngList.map(a => ({
+                        "序号": a.crbd5_no,
+                        "归属车间": a.crbd5_workshop,
+                        "设备编号": a.crbd5_equipment_no,
+                        "设备名称": a.crbd5_equipment_name,
+                        "维修联系人1": a.crbd5_owner1,
+                        "维修联系人2": a.crbd5_owner2,
+                        "维修联系人3": a.crbd5_owner3,
+                        "维修联系人4": a.crbd5_owner4,
+                        "维修联系人5": a.crbd5_owner5,
+                        "维修联系人6": a.crbd5_owner6
+                    }));
+
+                    //把6个责任人清单转置成一维表给EngList_Arr
+                    EngList.forEach(
+                        a => {
+                            for (let index = 1; index <= 6; index++) {
+                                Eng_Info = { "EngName": a[`维修联系人${index}`], "EngPhone_No": "" };
+                                if (Eng_Info.EngName.length > 0) {
+                                    EngList_Arr.push(Eng_Info);
+                                }
+                            }
+                        }
+
+                    );
+
+                    配置角色权限();
+
+                    Bussing_Engs = response.Bussing_Engs;//汇总正在忙碌的工程师
+                    //
+                    ShiftList = response.ShiftList.map(a => ({ ...a, 排班时长: (isNaN(Number(a.crbd5_work_hour)) ? -999 : Number(a.crbd5_work_hour)) })).filter(a => (a.crbd5_name != "标准工时"));
+                    //设置当前设备的SME工程师
+                    Crt_owner_Engs = EngList.filter(A => (A.设备编号 == equipmentNo))[0];
+                    var now = new Date();
+                    var targetDate = new Date(`${String(now.getFullYear())}/${String(now.getMonth() + 1)}/${String(now.getDate())} 08:00:00`);
+                    var difference = now - targetDate;
+                    // 计算小时、分钟和秒
+                    var hours = Math.floor(difference / (1000 * 60 * 60)) + Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)) / 60;
+                    //debugger
+                    // if (hours >= 9 && hours <= 12) {
+                    //     Crt_Working_Engs = ShiftList.filter(a => ( a.排班时长> 8 ))
+
+                    // }
+                    // else {
+                    // 写入值班人↓↓↓
+
+                    if (hours < 0 || hours >= 12) {
+                        Crt_Working_Engs = ShiftList.filter(a => (a.crbd5_work_hour == "11(夜)"));
+                        for (let index = 0; index < 6; index++) {
+                            Crt_owner_Engs[`维修联系人${index + 1}`] = "";
+
+                        };
+
+                        Crt_Working_Engs.forEach((a, b) => Crt_owner_Engs[`维修联系人${b + 1}`] = a.crbd5_name);
+
+                    } else {
+                        // Crt_Working_Engs = ShiftList.filter(a => ( (isNaN(Number(a.crbd5_work_hour)) ? 0 : Number(a.crbd5_work_hour))>hours))
+                        Crt_Working_Engs = ShiftList.filter(a => ((a.排班时长 + 0.5 + 0.5 * (a.排班时长 > 8)) > hours))
+                    }
+                    // };
+
+                    // alert(targetDate);
+                    // alert(Crt_Working_Engs[1].排班时长);
+                    arr_index_start = 0;
+                    for (let index = 0; index < 6; index++) {
+                        //debugger;
+                        eng2search = Crt_owner_Engs[`维修联系人${index + 1}`];
+                        eng2searchedInfo = Crt_Working_Engs.filter(a => (a.crbd5_name == eng2search));
+
+                        if (eng2search.length > 0 && eng2searchedInfo.length > 0) {
+                            arr_index_start++
+                            Crt_owner_Engs_Arr.push({ ...eng2searchedInfo[0], "当前接单任务": Bussing_Engs.filter(a => (a.crbd5_eng_locked == eng2searchedInfo[0].crbd5_name && a.crbd5_status_val >= 1 && a.crbd5_status_val <= 2)).length, "索引": arr_index_start, "优先级": Bussing_Engs.filter(a => (a.crbd5_eng_locked == eng2searchedInfo[0].crbd5_name && a.crbd5_status_val >= 1 && a.crbd5_status_val <= 2)).length * 1000 + Bussing_Engs.filter(a => (a.crbd5_eng_locked == eng2searchedInfo[0].crbd5_name)).length });
+                            // Crt_owner_Engs_Arr.sort((a, b) => {
+                            //     if (a.优先级 !== b.优先级) {
+
+                            //         return a.优先级 - b.优先级;
+                            //     } else
+                            //         // 如果 B 列相同，则比较 A 列的值
+                            //         return a.索引 - b.索引;
+                            // })
+                        }
+                    };
+
+                    Crt_Working_Engs.forEach((a1, b, c) => {
+                        if (!($.inArray(a1.crbd5_name, Crt_owner_Engs_Arr.map(a3 => (a3.crbd5_name))) >= 0) && arr_index_start <= 6) {
+                            arr_index_start++;
+                            Crt_owner_Engs_Arr.push({ ...a1, "当前接单任务": Bussing_Engs.filter(a2 => (a2.crbd5_eng_locked == a1.crbd5_name && a2.crbd5_status_val >= 1 && a2.crbd5_status_val <= 2)).length, "索引": arr_index_start, "优先级": Bussing_Engs.filter(a4 => (a4.crbd5_eng_locked == a1.crbd5_name && a4.crbd5_status_val >= 1 && a4.crbd5_status_val <= 2)).length * 1000 + Bussing_Engs.filter(a5 => (a5.crbd5_eng_locked == a1.crbd5_name)).length })
+                        }
+                    });
+
+
+
+
+
+                    // if (Crt_owner_Engs_Arr.length == 0) {
+                    //     Crt_owner_Engs_Arr = Crt_Working_Engs.map(
+                    //         (b, rowNo) =>
+                    //             ({ ...b, "当前接单任务": Bussing_Engs.filter(a => (a.crbd5_engineer_name == b.crbd5_name && a.crbd5_status_val >= 1 && a.crbd5_status_val <= 2)).length, "索引": rowNo, "优先级": Bussing_Engs.filter(a => (a.crbd5_engineer_name == b.crbd5_name && a.crbd5_status_val >= 1 && a.crbd5_status_val <= 2)).length * 1000 + Bussing_Engs.filter(a => (a.crbd5_engineer_name == b.crbd5_name)).length })
+                    //     )
+
+                    // };
+
+                    Crt_owner_Engs_Arr.sort((a, b) => {
+                        if (a.优先级 !== b.优先级) {
+
+                            return a.优先级 - b.优先级;
+                        } else
+                            // 如果 B 列相同，则比较 A 列的值
+                            return a.索引 - b.索引;
+                    });
+                    Crt_owner_Engs_Arr.forEach((a, b) => {
+                        if (b < 2) {
+                            $(`#Crt_Engineer${b + 2}`).html(`${a.crbd5_name}(<a ID="Crt_Engineer${a}_Phone" href="tel:${a.crbd5_phone_no}"
+                                class="phone-link">点击可联系他</a>)${a.当前接单任务 == 0 ? "" : "<Span style='color: white;background-color: #873535;padding: 5px;font-size: 12px;'>忙X" + a.当前接单任务 + "</Span>"}`);
+                        };
+                    });
+
+                    try {
+                        crt_got_status = parseInt(baoxiulist[0]['crbd5_status_val'])
+                    } catch (error) {
+                        crt_got_status = 0
+                    };
+                    正在维修的工程师接单数 = function () {
+                        try {
+                            return Bussing_Engs.filter(a2 => (a2.crbd5_eng_locked == baoxiulist[0].crbd5_eng_locked && a2.crbd5_status_val >= 1 && a2.crbd5_status_val <= 2)).length;
+                        } catch (error) {
+                            return 0
+
+                        }
+                    };
+                    $('#eng_4_selected').html(
+                        //设定指派工程师
+                        (crt_got_status == 0 || crt_got_status == 3) ? (Crt_owner_Engs_Arr.map(A => (`<option value="${A.crbd5_name}||${A.crbd5_phone_no}" >${A.crbd5_name}  ${A.当前接单任务 == 0 ? "" : "（当前维修任务：" + A.当前接单任务 + "个）"}</option>`))) : (`<option value="${baoxiulist[0].crbd5_eng_locked}||${baoxiulist[0].crbd5_eng_phone_no_locked}" >${baoxiulist[0].crbd5_eng_locked}  ${正在维修的工程师接单数() == 0 ? "" : "(当前维修任务：" + 正在维修的工程师接单数() + "个)"}</option>`)
+
+                    );
+
+
+                    /*    //debugger */
+
+
+                    baoxiulist.forEach(crtitem => (
+                        $('#HistoryDetail').html(
+                            baoxiulist.map((crtitem, index) => (
+
+                                `<tr><td>${index + 1}</td><td>${crtitem.crbd5_submit_time.replace('T', ' ').replace('Z', '')}</td><td>${crtitem.crbd5_trigger_reason}</td><td>${crtitem.crbd5_status_des}</td><td>${crtitem.crbd5_completion_duration ? ((crtitem.crbd5_completion_duration / 60).toFixed(1)) : ""}</td></tr>`
+
+                            )))
+
+                    ));
+                    crbd5_owner1 = MappingList[0]['crbd5_owner1'];
+                    crbd5_owner1_phone_num = MappingList[0]['crbd5_owner1_phone_num'];
+                    $('#Crt_Engineer1').html(`${crbd5_owner1}(<a href="tel:${crbd5_owner1_phone_num}" class="phone-link">点击可联系他</a>)`);
+                    try {
+                        Crt_Operator = OperatorInfo[0]['crbd5_lastest_operator_name'];
+                    } catch (error) {
+                        Crt_Operator = `N/A`
+                        console.debug("发生错误:", error);
+                        // 可以在这里处理错误，例如跳过当前函数或方法
+                    };
+                    try {
+                        Crt_Operator_No = OperatorInfo[0]['crbd5_lastest_operator_upi'];
+                    } catch (error) {
+                        Crt_Operator_No = `N/A`
+                        console.debug("发生错误:", error);
+                        // 可以在这里处理错误，例如跳过当前函数或方法
+                    };
+                    $('#Crt_Operator').html(Crt_Operator);
+                    $('#Crt_Operator_No').html(Crt_Operator_No);
+                    if (baoxiulist.length > 0) {
+                        crbd5_type = baoxiulist[0]['crbd5_type'];
+                        $('#crbd5_type').val(crbd5_type);
+
+                        crbd5_arrival_eng = baoxiulist[0]['crbd5_arrival_eng'];
+                        $('#crbd5_arrival_eng').val(crbd5_arrival_eng);
+                        crbd5_arrival_eng_upi = baoxiulist[0]['crbd5_arrival_eng_upi'];
+                        crbd5_completion_confirm_by = baoxiulist[0]['crbd5_completion_confirm_by_upi'];
+                        crbd5_completion_confirm_by_upi = baoxiulist[0]['crbd5_arrival_eng'];
+                        status_val = (baoxiulist[0]['crbd5_status_val'] == 3 || !baoxiulist[0]['crbd5_status_val']) ? 0 : baoxiulist[0]['crbd5_status_val'];
+                        trigger_reason = baoxiulist[0]['crbd5_trigger_reason'];
+                        SelectedEngVal = baoxiulist[0]['crbd5_eng_locked'] + '||' + baoxiulist[0]['crbd5_eng_phone_no_locked'];
+                        submitby = baoxiulist[0]['crbd5_submit_by'];
+                        submitby_UPI = baoxiulist[0]['crbd5_submit_upi'];
+                        rec_ID = baoxiulist[0]['crbd5_equipmentmaintenanceinformationid'];
+                        submitby_time = baoxiulist[0]['crbd5_submit_time'];
+                        $('#status').text((baoxiulist[0]['crbd5_status_des'] == "完成维修" || baoxiulist[0]['crbd5_status_des'] == "报修终止") ? "未报修" : baoxiulist[0]['crbd5_status_des']);
+                    } else { status_val = 0; $('#status').text('未报修') };
+                    if (status_val > 0 && status_val < 3) { 开始报修() };
+                    if ($('#status').text() == "未报修") { $('#status').css('color', 'green'); if (!kaishibaoxiu) { $('#baoxiu').show() } } else { $('#status').css('color', 'red') };
+                    var checkval1 = $('#Crt_baoxiuren').val();
+                    var checkval2 = $('#Crt_baoxiuren_No').val();
+                    var checkval3 = $('#Crt_baoxiuren').val();
+                    var checkval4 = $('#Reason').val();
+                    if (checkval1.length) { $('#Crt_baoxiuren').css('border-color', 'black') };
+                    if (checkval2.length) { $('#Crt_baoxiuren_No').css('border-color', 'black') };
+                    if (checkval3.length) { $('#eng_4_selected').css('border-color', 'black') };
+                    if (checkval4.length) { $('#Reason').css('border-color', 'black') };
+                    必填项空值时边框变红();
+                    if (checkval1.length && checkval2.length && checkval3.length && checkval4.length) { $('#submitbtn').prop('disabled', false); $('#submitbtn').css('background-color', 'rgb(4, 122, 67)') };
+                    $('.waiting').css('display', 'none');
+
+
+
+                },
+
+                error(xhr) {
+                    console.error(xhr.status);
+                }
+            });
+        }
+
+        function 开始报修() {
+
+            kaishibaoxiu = !kaishibaoxiu
+
+            if (!kaishibaoxiu) {
+                $('.baoxiuFunction').hide();
+                $('.baoxiuFunction1').hide();
+                $('.baoxiuFunction2').show();
+                $('#baoxiu').show();
+                $('.Crt_baoxiuren').hide();
+                $('#timer').hide();
+                $('#报修类型').hide();
+                $('#到场工程师').hide();
+
+
+
+
+            } else {
+
+
+                $('.baoxiuFunction').css('display', 'table-row');
+                $('.baoxiuFunction1').css('display', 'flex');
+                $('.baoxiuFunction2').hide();
+                $('#baoxiu').hide();
+                $('.Crt_baoxiuren').show();
+                $(`#Reason`).css('height', (status_val == 2) ? '60px' : '120px');
+
+                for (let index = 1; index <= status_val; index++) {
+                    $(`.Step${index}`).hide();
+                };
+
+                $(`.Step${status_val + 1}`).show();
+                if (status_val > 0) {
+                    $(`#Reason`).css('height', (status_val == 2) ? '60px' : '120px');
+                    $(`.Step23`).show();
+                    $('#Crt_baoxiuren,#Crt_baoxiuren_No,#Reason,#eng_4_selected').prop("disabled", true);
+                    $('#eng_4_selected').css('background-color', '#ffffff00');
+                    $('#Crt_baoxiuren').val(submitby);
+                    $('#Crt_baoxiuren_No').val(submitby_UPI);
+                    $('#eng_4_selected').val()
+                    $('#Reason').val(trigger_reason);
+                    $('#eng_4_selected').val(SelectedEngVal);
+                    $('#timer').show();
+
+
+                }
+                else {
+                    $(`.Step23`).hide();
+                    $('.Step2,.Step3').hide();
+                    $('#Crt_baoxiuren,#Crt_baoxiuren_No,#Reason').prop("disabled", false);// #eng_4_selected
+                    $('#Crt_baoxiuren').val(localStorage.getItem("submitby"));
+                    $('#Crt_baoxiuren_No').val(localStorage.getItem("submitby_UPI"));
+                    $('#Reason').val('');
+                    $('#eng_4_selected').css('background-color', '#ffffff');
+                    var checkval1 = $('#Crt_baoxiuren').val();
+                    var checkval2 = $('#Crt_baoxiuren_No').val();
+                    var checkval3 = $('#Crt_baoxiuren').val();
+                    var checkval4 = $('#Reason').val();
+                    $('#Crt_baoxiuren').css('border-color', (!checkval1.length ? 'red' : 'black'));
+                    $('#Crt_baoxiuren_No').css('border-color', (!checkval2.length ? 'red' : 'black'));
+                    $('#eng_4_selected').css('border-color', (!checkval3.length ? 'red' : 'black'));
+                    $('#Reason').css('border-color', (!checkval4.length ? 'red' : 'black'));
+                    $('#submitbtn').prop('disabled', !checkval1.length || !checkval2.length || !checkval3.length || !checkval4.length);
+                    if (checkval1.length && checkval2.length && checkval3.length && checkval4.length) { $('#submitbtn').css('background-color', 'rgb(4, 122, 67)') } else { $('#submitbtn').css('background-color', 'rgb(165, 165, 165)') };
+
+                }
+
+            }
+
+        };
+
+        function 报修进度推进(Canceled, bntval) {
+            $('.waiting').css('display', 'block');
+            trigger_reason = $('#Reason').val();
+            submitby = $('#Crt_baoxiuren').val();
+            submitby_UPI = $('#Crt_baoxiuren_No').val();
+            SelectedEngVal = $('#eng_4_selected').val();
+            Typ = $('[name=设备报修类型]:checked').val();
+            Send_to_maximo = $('[name=触发maximo选择]:checked').val();
+            cancelreason = $('#取消原因').val();
+            $.ajax({
+                url: `https://prod-185.westus.logic.azure.com:443/workflows/fd7fa8c5f8cb462eb14d062bb32e7a5e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2TUX-bxhnWEqpnc3RE4cEFodt-jh74B6llAZwS-pM-E&Function=填写报修信息&EquipmentName=${equipmentName}&EquipmentNo=${equipmentNo}&trigger_reason=${trigger_reason}&submitby=${submitby}&submitby_UPI=${submitby_UPI}&status_val=${(status_val ? status_val : 0) + 1}&Rec_Id=${rec_ID ? rec_ID : ''}&Canceled=${Canceled}&SelectedEngVal=${SelectedEngVal}&cancelreason=${cancelreason}&Typ=${Typ}&CrtStatusVal=${status_val}&Modify_By=${Crt_Employee}&Modify_By_upi=${Crt_Employee_No}&Send_to_maximo=${Send_to_maximo}&web_open_time_stamp=${web_open_time_stamp}&Maintenance_Get_TimeStamp=${Maintenance_Get_TimeStamp}&1Hour_Notify=${MappingList[0].crbd5_1hour_notify}&2Hour_Notify=${MappingList[0].crbd5_2hour_notify}&1Hour_Notify_Msg=${MappingList[0].crbd5_1hour_msg_to}&2Hour_Notify_Msg=${MappingList[0].crbd5_2hour_msg_to}`,
+                method: 'GET',
+                success(response) {
+
+                    if (response.Status_Match == "否") {
+
+                        alert(response.Alert);
+                        location.reload();
+
+                    } else {
+                        baoxiulist = [response.HistoryList];
+                        baoxiulist.forEach(crtitem => (
+                            $('#HistoryDetail').html(
+                                baoxiulist.map((crtitem, index) => (
+
+                                    `<tr><td>${index + 1}</td><td>${crtitem.crbd5_submit_time.replace('T', ' ').replace('Z', '')}</td><td>${crtitem.crbd5_trigger_reason}</td><td>${crtitem.crbd5_status_des}</td><td>${(crtitem.crbd5_completion_duration / 60).toFixed(1)}</td></tr>`
+
+                                )))
+
+                        ));
+                        if (baoxiulist) { status_val = (baoxiulist[0]['crbd5_status_val'] == 3 || !baoxiulist[0]['crbd5_status_val']) ? 0 : baoxiulist[0]['crbd5_status_val'] } else { status_val = 0 };
+                        trigger_reason = baoxiulist[0]['crbd5_trigger_reason'];
+                        SelectedEngVal = baoxiulist[0]['crbd5_eng_locked'] + '||' + baoxiulist[0]['crbd5_eng_phone_no_locked'];
+                        submitby = baoxiulist[0]['crbd5_submit_by'];
+                        submitby_UPI = baoxiulist[0]['crbd5_submit_upi'];
+                        rec_ID = baoxiulist[0]['crbd5_equipmentmaintenanceinformationid'];
+                        submitby_time = baoxiulist[0]['crbd5_submit_time'];
+                        $('#status').text(baoxiulist[0]['crbd5_status_des'] == "完成维修" ? "未报修" : baoxiulist[0]['crbd5_status_des']);
+                        kaishibaoxiu = (status_val == 0);
+                        扫描报修清单();
+                        // if (kaishibaoxiu) { };
+                        开始报修();
+                        if ($('#status').text() == "未报修") { $('#status').css('color', 'green') } else { $('#status').css('color', 'red') };
+
+                        $('.waiting').css('display', 'none');
+                        //debugger
+                        if ($(bntval).val() == "点击提交") { makeCall() };
+                    }
+
+
+
+
+
+                },
+
+                error(xhr) {
+                    console.error(xhr.status);
+                }
+            });
+
+        };
+
+        $('#Crt_baoxiuren,#Crt_baoxiuren_No,#eng_4_selected,#Reason').on('change', function () {
+            var checkval1 = $('#Crt_baoxiuren').val();
+            var checkval2 = $('#Crt_baoxiuren_No').val();
+            var checkval3 = $('#Crt_baoxiuren').val();
+            var checkval4 = $('#Reason').val();
+            $('#Crt_baoxiuren').css('border-color', (!checkval1.length ? 'red' : 'black'));
+            $('#Crt_baoxiuren_No').css('border-color', (!checkval2.length ? 'red' : 'black'));
+            $('#eng_4_selected').css('border-color', (!checkval3.length ? 'red' : 'black'));
+            $('#Reason').css('border-color', (!checkval4.length ? 'red' : 'black'));
+            $('#submitbtn').prop('disabled', !checkval1.length || !checkval2.length || !checkval3.length || !checkval4.length);
+            if (checkval1.length && checkval2.length && checkval3.length && checkval4.length) { $('#submitbtn').css('background-color', 'rgb(4, 122, 67)') } else { $('#submitbtn').css('background-color', 'rgb(165, 165, 165)') };
+        })
+        function makeCall() { window.location.href = 'tel:' + Crt_owner_Engs_Arr[0]['crbd5_phone_no']; }
+
+        function updateTimer() {
+            const targetDate = new Date(submitby_time);
+            const now = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
+
+            const difference = now - targetDate;
+
+            // 计算小时、分钟和秒
+            const hours = Math.floor(difference / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // 更新显示
+            document.getElementById('timer').innerText = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        };
+
+
+        function 更新与查询个人信息() {
+
+            Crt_Employee = $('#User_Name').val();
+            配置角色权限();
+            localStorage.setItem('Crt_Employee', Crt_Employee);
+            submitby = Crt_Employee;
+            localStorage.setItem('submitby', submitby);
+
+            Crt_Employee_No = $('#User_No').val();
+            localStorage.setItem('Crt_Employee_No', Crt_Employee_No);
+            submitby_UPI = Crt_Employee_No;
+            localStorage.setItem('submitby_UPI', submitby_UPI);
+
+
+
+            $.ajax({
+                url: `https://default5b268d572a6f4e04b0de6938583d5e.bc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/4292dca0ca5b4d73bba67a60be6bd8bd/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nw4wplK72TmmRvKGYTfxIYu4UyMuMXFlE-p6uoTjxFM&C_Q=&Function=UPI&UPI=${Crt_Employee_No}&Name=${Crt_Employee}`,
+                method: 'GET',
+                success(response) {
+                    Crt_Employee_Email = response.邮箱;
+                    localStorage.setItem('Crt_Employee_Email', Crt_Employee_Email);
+                    Crt_Employee_Phone = response.手机号码;
+                    localStorage.setItem('Crt_Employee_Phone', Crt_Employee_Phone);
+                    $('#peopleimg').attr('src', `https://default5b268d572a6f4e04b0de6938583d5e.bc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/72bb177f2ea6470ca65a84f89f832cca/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=X3MB_ykuxwkGi472oYk97EcMVlOJdYg7aJsjNdTdA-o&C_Q=&Function=邮箱查询&Email=${Crt_Employee_Email}`);
+                    $('.waiting').hide();
+                },
+
+                error(xhr) {
+                    console.error(xhr.status);
+                }
+            });
+
+
+        };
+
+
+        function 维修类型重置() {
+
+            $('#维修类型容器').html(`<span style="color: #000075;font-weight: bold;"><input checked style="width: 15px;height: 15px" type="radio"
+                            name="设备报修类型" id="设备维修" value="设备维修">设备维修</span>
+                    <span style="color: #0a4d38;font-weight: bold;"><input style="width: 15px;height: 15px;;" type="radio" name="设备报修类型"
+                            id="设备调整" value="设备调整">设备调整</span>`)
+
+        };
+        function 触发maximo重置() {
+
+            $('#触发maximo').prop('checked', false);
+            $('#不触发maximo').prop('checked', true);
+
+        };
+        function 取消原因重置() {
+
+            $('#取消原因').val(``)
+
+        };
+
+        //必填为空时边框变红
+        $('[required]').on('change',
+            必填项空值时边框变红
+        );
+
+        function getLocalISOString() {
+            const now = new Date();
+            const offsetMs = now.getTimezoneOffset() * 60 * 1000;
+            const localTime = new Date(now.getTime() - offsetMs);
+            return localTime.toISOString().slice(0, 19).replace('T', ' ');
+        };
+
+        function 必填项空值时边框变红() {
+            $('[required]').each(function () {
+                if ($(this).val() === '') {
+                    $(this).css('border', '1px solid red');
+                } else { $(this).css('border', '1px solid black'); }
+            });
+        };
+
+        function 配置角色权限() {
+
+
+            switch (true) {
+                case EngList_Arr.some(a => a.EngName === Crt_Employee):
+                    my_Role = "工程师";
+                    $('#工程师已到场').prop('disabled', false);
+                    $('#工程师已到场').css('background-color', 'rgb(4, 65, 122)');
+                    $('#取消维修按钮').prop('disabled', true);
+                    $('#取消维修按钮').css('background-color', 'rgb(165, 165, 165)');
+                    $('#完成维修按钮').prop('disabled', true);
+                    $('#完成维修按钮').css('background-color', 'rgb(165, 165, 165)');
+                    break;
+                case Advance_Operators.some(a => a.crbd5_name === Crt_Employee):
+                    my_Role = "高级操作员";
+                    $('#工程师已到场').prop('disabled', false);
+                    $('#工程师已到场').css('background-color', 'rgb(4, 65, 122)');
+                    $('#取消维修按钮').prop('disabled', false);
+                    $('#取消维修按钮').css('background-color', 'rgb(53, 2, 2)');
+                    $('#完成维修按钮').prop('disabled', false);
+                    $('#完成维修按钮').css('background-color', 'rgb(4, 122, 67)');
+                    break;
+                default:
+                    my_Role = "员工";
+                    $('#工程师已到场').prop('disabled', true);
+                    $('#工程师已到场').css('background-color', 'rgb(165, 165, 165)');
+                    $('#取消维修按钮').prop('disabled', false);
+                    $('#取消维修按钮').css('background-color', 'rgb(53, 2, 2)');
+                    $('#完成维修按钮').prop('disabled', false);
+                    $('#完成维修按钮').css('background-color', 'rgb(4, 122, 67)');
+                    break;
+            }
+        };
+
+        // 每秒更新一次
+        setInterval(updateTimer, 1000);
+        setInterval(function () {
+            if (status_val === 0) {
+                扫描报修清单(); // 只有当 status_val 为 0 时才执行
+            }
+        }, 60000)
+
+        // 页面加载时立即更新一次
+        updateTimer();
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
